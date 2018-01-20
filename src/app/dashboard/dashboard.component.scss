@@ -1,4 +1,164 @@
+$nav1-width: 6rem;
+$nav2-width: 8rem;
+
+$header-height: 3.5rem;
+
 .dashboard {
-  background-color: #ff9900;
-  color: #fff;
+
+  .header {
+    height: $header-height;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 1rem;
+
+    h1 {
+
+      font-size: 1.5rem;
+      display: inline-block;
+      line-height: $header-height;
+      height: $header-height;
+
+      a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        color: #cccccc;
+      }
+    }
+
+    .search {
+      //background-color: red;
+      display: inline-block;
+      margin-left: 2rem;
+      height: $header-height;
+      line-height: $header-height;
+
+      input {
+        height: 2rem;
+        outline: none;
+
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        padding: 0 .5rem;
+        background-color: #868e96;
+      }
+
+      input:hover {
+        background-color: #ffffff;
+      }
+    }
+
+    .user {
+      position: absolute;
+      top: 0;
+      right: 1rem;
+      bottom: 0;
+      display: flex;
+
+      .name {
+        line-height: $header-height;
+        padding: 0 .5rem;
+        a {
+          color: #ffffff;
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: #cccccc;
+        }
+      }
+
+      .logout {
+        line-height: $header-height;
+        padding: 0 .5rem;
+        a {
+          color: #ffffff;
+          text-decoration: none;
+        }
+
+        a:hover {
+          color: #cccccc;
+        }
+      }
+    }
+  }
+
+  .content {
+
+    .nav1 {
+      position: fixed;
+      top: $header-height;
+      left: 0;
+      width: $nav1-width;
+      bottom: 0;
+      overflow: auto;
+      background-color: #22252a;
+      color: #ffffff;
+
+      .item {
+        height: 3rem;
+        line-height: 3rem;
+        font-size: 1rem;
+        padding: 0 .5rem;
+        cursor: pointer;
+      }
+
+      .item:hover {
+        background-color: #3f464d;
+        color: #ffffff;
+      }
+
+      .active {
+        background-color: #3f464d;
+        color: #ffffff;
+      }
+    }
+
+    .nav2 {
+      position: fixed;
+      top: $header-height;
+      left: $nav1-width;
+      width: $nav2-width;
+      bottom: 0;
+      overflow: auto;
+      background-color: #3f464d;
+
+      .item {
+        height: 3rem;
+        line-height: 3rem;
+
+        a {
+          color: #ffffff;
+          text-decoration: none;
+          font-size: .85rem;
+          display: block;
+          padding-left: 1rem;
+        }
+
+        a:hover {
+          color: cornflowerblue;
+        }
+      }
+
+      .active {
+        a {
+          color: cornflowerblue;
+        }
+      }
+    }
+
+    .main {
+      position: fixed;
+      top: $header-height;
+      right: 0;
+      bottom: 0;
+      left: $nav1-width+$nav2-width;
+      padding: .5rem;
+    }
+  }
 }
