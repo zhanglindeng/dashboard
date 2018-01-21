@@ -11,7 +11,8 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      {path: 'home', loadChildren: './home/home.module#HomeModule'}
+      {path: 'home', loadChildren: './home/home.module#HomeModule'},
+      {path: 'log', loadChildren: './log/log.module#LogModule'}
     ]
   },
   {path: '**', component: NotFoundComponent}

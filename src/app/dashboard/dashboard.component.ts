@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  nav1 = 'user';
 
   constructor() {
   }
@@ -14,11 +13,4 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  nav1Click(s: string) {
-    this.nav1 = s;
-  }
-
-  nav1Mouseenter(s: string) {
-    this.nav1 = s;
-  }
 }

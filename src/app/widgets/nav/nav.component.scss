@@ -1,0 +1,64 @@
+$nav1-width: 6rem;
+$nav2-width: 8rem;
+
+$header-height: 3.5rem;
+
+.nav1 {
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  width: $nav1-width;
+  bottom: 0;
+  overflow: auto;
+  background-color: #22252a;
+  color: #ffffff;
+
+  .item {
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1rem;
+    padding: 0 .5rem;
+    cursor: pointer;
+  }
+
+  .item:hover {
+    background-color: #3f464d;
+    color: #ffffff;
+  }
+
+  .active {
+    background-color: #3f464d;
+    color: #ffffff;
+  }
+}
+
+.nav2 {
+  position: fixed;
+  top: $header-height;
+  left: $nav1-width;
+  width: $nav2-width;
+  bottom: 0;
+  overflow: auto;
+  background-color: #3f464d;
+
+  .item {
+    height: 3rem;
+    line-height: 3rem;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: .85rem;
+      display: block;
+      padding-left: 1rem;
+    }
+
+    a:hover {
+      color: cornflowerblue;
+    }
+
+    a.active {
+      color: cornflowerblue;
+    }
+  }
+}

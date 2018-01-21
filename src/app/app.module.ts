@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app.routing.module';
 import { LoginComponent } from './pages/login/login.component';
 import { SharedModule } from './shared/shared.module';
+import { NavComponent } from './widgets/nav/nav.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
     DashboardComponent,
     NotFoundComponent,
     LoginComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
