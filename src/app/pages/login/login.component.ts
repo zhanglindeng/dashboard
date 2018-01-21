@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
   isLoginOk() {
     if (this.respData.code === 0) {
       sessionStorage.setItem('token', this.respData.token);
-      this.router.navigateByUrl('/home');
+      this.router.navigate(['/home']);
     } else {
       alert(this.respData.message);
     }

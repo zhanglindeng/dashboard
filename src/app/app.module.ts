@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { LoginComponent } from './pages/login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { NavComponent } from './widgets/nav/nav.component';
+import { AuthGuardService } from './auth-guard.service';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { NavComponent } from './widgets/nav/nav.component';
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
