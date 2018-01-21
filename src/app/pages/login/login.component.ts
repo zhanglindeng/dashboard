@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { ResponseData } from '../../classes/response-data';
+import 'rxjs/add/operator/map';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +16,9 @@ export class LoginComponent implements OnInit {
   passwordEmpty = false;
   emailEmpty = false;
   requesting = false;
+  respData: ResponseData;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   ngOnInit() {
@@ -40,19 +44,29 @@ export class LoginComponent implements OnInit {
     // http request
     this.requesting = true;
 
-    this.http.post(`${environment.apiUrl}/login`, {
+    this.http.post<ResponseData>(`${environment.apiUrl}/user/login`, {
       email: this.email,
       password: this.password,
-    }).subscribe(
-      data => {
-        console.log(data);
+    }).map(data => new ResponseData(data)).subscribe(
+      respData => {
+        this.respData = respData;
         this.requesting = false;
+        this.isLoginOk();
       },
       err => {
         alert(err.statusText);
         this.requesting = false;
       }
     );
+  }
+
+  isLoginOk() {
+    if (this.respData.code === 0) {
+      sessionStorage.setItem('token', this.respData.token);
+      this.router.navigateByUrl('/home');
+    } else {
+      alert(this.respData.message);
+    }
   }
 
 }
