@@ -1,3 +1,42 @@
-<p>
-  log works!
-</p>
+<div class="logs">
+  <h3>Access Logs</h3>
+  <hr>
+  <p>共 {{ count }} 条记录，{{ currentPage }}/{{ totalPage }}</p>
+  <table class="table table-bordered table-hover">
+    <tr class="thead-light">
+      <th>ID</th>
+      <th>IP</th>
+      <th>Location</th>
+      <th>Method</th>
+      <th>Status</th>
+      <th>Size</th>
+      <th>Duration</th>
+      <th>Path</th>
+      <!--<th>Group</th>-->
+      <!--<th>OS</th>-->
+      <!--<th>Browser</th>-->
+      <th>Datetime</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let log of logs">
+      <td>{{ log.id }}</td>
+      <td>{{ log.client_ip }}</td>
+      <td>{{ log.ip_location }}</td>
+      <td>{{ log.method }}</td>
+      <td>{{ log.status_code }}</td>
+      <td>{{ log.content_length_format }}</td>
+      <td>{{ log.duration_format }}</td>
+      <td><code>{{ log.path }} </code></td>
+      <!--<td>{{ log.group }}</td>-->
+      <!--<td>{{ log.client_os }}</td>-->
+      <!--<td>{{ log.client_browser }}</td>-->
+      <td>{{ log.created_at }}</td>
+      <td><a class="btn btn-primary" href="/log/detail/{{ log.request_id }}">详情</a></td>
+    </tr>
+  </table>
+  <div class="pull-right">
+    <button class="btn btn-primary" (click)="prevPage()" [disabled]="currentPage == 1">上一页</button>
+    <button class="btn btn-secondary" (click)="nexPage()" [disabled]="currentPage >= totalPage">下一页</button>
+  </div>
+  <div class="clearfix"></div>
+</div>
