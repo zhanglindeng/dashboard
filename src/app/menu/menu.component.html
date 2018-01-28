@@ -1,0 +1,65 @@
+<div class="menu">
+  <h3>Menus</h3>
+  <hr>
+  <button class="btn btn-primary" (click)="add()">添加</button>
+  <hr>
+  <div *ngFor="let menu of menus">
+    <pre>
+      {{ menu | json }}
+    </pre>
+    <hr>
+  </div>
+
+  <!--add menu view-->
+  <div *ngIf="add_menu_view_show" class="add_menu_view">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">添加菜单</h5>
+          <button type="button" class="close" (click)="addNo()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--new_name-->
+          <div class="form-group row">
+            <label for="new_name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="new_name" [(ngModel)]="newMenu.name">
+            </div>
+          </div>
+          <!--new_name_en-->
+          <div class="form-group row">
+            <label for="new_name_en" class="col-sm-2 col-form-label">Name En</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="new_name_en" [(ngModel)]="newMenu.name_en">
+            </div>
+          </div>
+          <!--new_icon-->
+          <div class="form-group row">
+            <label for="new_icon" class="col-sm-2 col-form-label">Icon</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="new_icon" [(ngModel)]="newMenu.icon">
+            </div>
+          </div>
+          <!--new_sort-->
+          <div class="form-group row">
+            <label for="new_sort" class="col-sm-2 col-form-label">Sort</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="new_sort" [(ngModel)]="newMenu.sort">
+            </div>
+          </div>
+          <!--new_remark-->
+          <div class="form-group row">
+            <label for="new_remark" class="col-sm-2 col-form-label">Remark</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="new_remark" [(ngModel)]="newMenu.remark">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="addNo()">取消</button>
+          <button type="button" class="btn btn-primary" (click)="addOk()" [disabled]="requesting">确定</button>
+        </div>
+    </div>
+  </div>
+</div>

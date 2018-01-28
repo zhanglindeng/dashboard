@@ -14,7 +14,8 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {path: 'home', loadChildren: './home/home.module#HomeModule'},
-      {path: 'log', loadChildren: './log/log.module#LogModule'}
+      {path: 'log', loadChildren: './log/log.module#LogModule'},
+      {path: 'menu', loadChildren: './menu/menu.module#MenuModule'},
     ]
   },
   {path: '**', component: NotFoundComponent}
