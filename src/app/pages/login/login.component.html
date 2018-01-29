@@ -5,12 +5,14 @@
       <h3>用户登录</h3>
       <div class="form-group">
         <label for="email">邮箱：</label>
-        <input type="email" class="form-control" id="email" placeholder="请输入邮箱地址" [(ngModel)]="email">
+        <input type="email" class="form-control" id="email" placeholder="请输入邮箱地址" [(ngModel)]="email"
+               (keyup.enter)="login()">
         <p class="text-danger" *ngIf="emailEmpty">请输入邮箱地址</p>
       </div>
       <div class="form-group">
         <label for="password">密码：</label>
-        <input type="password" class="form-control" id="password" placeholder="请输入登录密码" [(ngModel)]="password">
+        <input type="password" class="form-control" id="password" placeholder="请输入登录密码" [(ngModel)]="password"
+               (keyup.enter)="login()">
         <p class="text-danger" *ngIf="passwordEmpty">请输入登录密码</p>
       </div>
       <div class="text-center">
