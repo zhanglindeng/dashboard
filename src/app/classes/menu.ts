@@ -20,7 +20,7 @@ export class Menu {
   remark: string;
   sort: number;
   status: number;
-  submenus: Submenus[];
+  submenus: Submenu[];
 
   public constructor(fields?: {
     id: number,
@@ -32,7 +32,7 @@ export class Menu {
     remark: string,
     sort: number,
     status: number,
-    submenus: Submenus[]
+    submenus: Submenu[]
   }) {
     if (fields) {
       Object.assign(this, fields);
@@ -40,7 +40,33 @@ export class Menu {
   }
 }
 
-export class Submenus {
+// export class Submenu {
+//   id: number;
+//   created_at: string;
+//   updated_at: string;
+//   name: string;
+//   link: string;
+//   sort: number;
+//   status: number;
+//   menu_id: number;
+//
+//   public constructor(fields?: {
+//     id: number,
+//     created_at: string;
+//     updated_at: string,
+//     name: string,
+//     link: string,
+//     sort: number,
+//     status: number,
+//     menu_id: number
+//   }) {
+//     if (fields) {
+//       Object.assign(this, fields);
+//     }
+//   }
+// }
+
+export class Submenu {
   id: number;
   created_at: string;
   updated_at: string;
@@ -49,7 +75,7 @@ export class Submenus {
   sort: number;
   status: number;
   menu_id: number;
-  menu: Menu;
+  // menu: Menu;
 
   public constructor(fields?: {
     id: number,
@@ -59,11 +85,17 @@ export class Submenus {
     link: string,
     sort: number,
     status: number,
-    menu_id: number,
-    menu: Menu
+    menu_id: number
+    // menu: Menu
   }) {
     if (fields) {
       Object.assign(this, fields);
     }
   }
+}
+
+export class AddSubmenuResponse {
+  code: number;
+  message: string;
+  submenu: Submenu;
 }

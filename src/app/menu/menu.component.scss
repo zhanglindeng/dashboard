@@ -6,4 +6,24 @@
     left: calc(calc(100vw - 30rem) / 2);
     width: 40rem;
   }
+
+  .add_submenu_view {
+    position: fixed;
+    top: 10rem;
+    left: calc(calc(100vw - 30rem) / 2);
+    width: 40rem;
+  }
+
+  .menu-item {
+    padding: 1rem;
+    border: 1px solid #aaa;
+    margin-bottom: 3rem;
+
+    .name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: .5rem;
+    }
+  }
 }

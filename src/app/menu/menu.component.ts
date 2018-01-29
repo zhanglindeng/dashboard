@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Menu, MenuResponse, MenusResponse } from '../classes/menu';
+import { AddSubmenuResponse, Menu, MenuResponse, MenusResponse, Submenu } from '../classes/menu';
 import { environment } from '../../environments/environment';
-
-// import * as $ from 'jquery';
+import { BaseResponse } from '../classes/response';
 
 @Component({
   selector: 'app-menu',
@@ -17,7 +16,10 @@ export class MenuComponent implements OnInit {
 
   // add menu
   add_menu_view_show = false;
+  add_submenu_view_show = false;
   newMenu: Menu;
+  newSubmenu: Submenu;
+  currentAddMenu: Menu;
 
   constructor(private http: HttpClient) {
   }
@@ -29,7 +31,14 @@ export class MenuComponent implements OnInit {
     this.newMenu.name_en = '';
     this.newMenu.icon = '';
     this.newMenu.remark = '';
-    this.newMenu.sort = 0;
+    this.newMenu.sort = 100;
+
+    // init add new submenu
+    this.newSubmenu = new Submenu();
+    this.newSubmenu.name = '';
+    this.newSubmenu.link = '';
+    this.newSubmenu.sort = 100;
+    this.newSubmenu.menu_id = 0;
 
     this.http.get(`${environment.apiUrl}/menu`).subscribe(
       (data: MenusResponse) => {
@@ -64,8 +73,9 @@ export class MenuComponent implements OnInit {
       (data: MenuResponse) => {
         this.requesting = false;
         if (data.code === 0) {
-          alert('添加菜单成功');
           this.add_menu_view_show = false;
+          alert('添加菜单成功');
+          location.reload();
         } else {
           alert(data.message);
         }
@@ -80,5 +90,154 @@ export class MenuComponent implements OnInit {
 
   addNo() {
     this.add_menu_view_show = false;
+  }
+
+  disable(m: Menu) {
+    this.http.post(`${environment.apiUrl}/menu/disable/${m.id}`, null, {
+      headers: {'Authorization': sessionStorage.getItem('token')}
+    }).subscribe(
+      (data: BaseResponse) => {
+        if (data.code === 0) {
+          m.status = 0;
+        } else {
+          alert(data.message);
+        }
+      },
+      err => {
+        alert(err.message || 'unknown error');
+      }
+    );
+  }
+
+  enable(m: Menu) {
+    this.http.post(`${environment.apiUrl}/menu/enable/${m.id}`, null, {
+      headers: {'Authorization': sessionStorage.getItem('token')}
+    }).subscribe(
+      (data: BaseResponse) => {
+        if (data.code === 0) {
+          m.status = 1;
+        } else {
+          alert(data.message);
+        }
+      },
+      err => {
+        alert(err.message || 'unknown error');
+      }
+    );
+  }
+
+  del(m: Menu) {
+    const index = this.menus.indexOf(m, 0);
+    if (index > -1) {
+      this.http.post(`${environment.apiUrl}/menu/del/${m.id}`, null, {
+        headers: {'Authorization': sessionStorage.getItem('token')}
+      }).subscribe(
+        (data: BaseResponse) => {
+          if (data.code === 0) {
+            this.menus.splice(index, 1);
+          } else {
+            alert(data.message);
+          }
+        },
+        err => {
+          alert(err.message || 'unknown error');
+        }
+      );
+    }
+  }
+
+  addSubmenu(m: Menu) {
+    this.currentAddMenu = m;
+    this.add_submenu_view_show = true;
+  }
+
+  addSubmenuNo() {
+    this.add_submenu_view_show = false;
+  }
+
+  addSubmenuOk() {
+    this.newSubmenu.menu_id = this.currentAddMenu.id;
+    this.http.post(`${environment.apiUrl}/menu/add/${this.currentAddMenu.id}/submenu`, {
+      name: this.newSubmenu.name,
+      link: this.newSubmenu.link,
+      sort: this.newSubmenu.sort,
+    }, {
+      headers: {'Authorization': sessionStorage.getItem('token')}
+    }).subscribe(
+      (data: AddSubmenuResponse) => {
+        if (data.code === 0) {
+          this.add_submenu_view_show = false;
+          alert('添加子菜单成功');
+          location.reload();
+        } else {
+          alert(data.message);
+        }
+      },
+      err => {
+        alert(err.message || 'unknown error');
+      }
+    );
+  }
+
+  delSubmenu(m: Menu, s: Submenu) {
+    const index = m.submenus.indexOf(s, 0);
+    if (index > -1) {
+      this.http.post(`${environment.apiUrl}/menu/del/${m.id}/submenu/${s.id}`, null, {
+        headers: {'Authorization': sessionStorage.getItem('token')}
+      }).subscribe(
+        (data: BaseResponse) => {
+          if (data.code === 0) {
+            m.submenus.splice(index, 1);
+          } else {
+            alert(data.message);
+          }
+        },
+        err => {
+          alert(err.message || 'unknown error');
+        }
+      );
+    }
+  }
+
+  disableSubmenu(m: Menu, s: Submenu) {
+    this.http.post(`${environment.apiUrl}/menu/disable/${m.id}/submenu/${s.id}`, null, {
+      headers: {'Authorization': sessionStorage.getItem('token')}
+    }).subscribe(
+      (data: BaseResponse) => {
+        if (data.code === 0) {
+          s.status = 0;
+        } else {
+          alert(data.message);
+        }
+      },
+      err => {
+        alert(err.message || 'unknown error');
+      }
+    );
+  }
+
+  enableSubmenu(m: Menu, s: Submenu) {
+    this.http.post(`${environment.apiUrl}/menu/enable/${m.id}/submenu/${s.id}`, null, {
+      headers: {'Authorization': sessionStorage.getItem('token')}
+    }).subscribe(
+      (data: BaseResponse) => {
+        if (data.code === 0) {
+          s.status = 1;
+        } else {
+          alert(data.message);
+        }
+      },
+      err => {
+        alert(err.message || 'unknown error');
+      }
+    );
+  }
+
+  edit(m: Menu) {
+    alert(`todo: edit ${m.name}`);
+  }
+
+  editSubmenu(m: Menu, s: Submenu) {
+    alert(`todo: edit ${m.name} submenu ${s.name}`);
   }
 }
