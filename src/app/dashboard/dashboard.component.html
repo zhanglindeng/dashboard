@@ -18,8 +18,8 @@
   </div>
   <div class="content">
     <app-nav></app-nav>
-    <div class="main">
-      <router-outlet></router-outlet>
+    <div class="main" id="main" #mainContainer>
+      <router-outlet (activate)="onActivate($event, mainContainer)"></router-outlet>
     </div>
   </div>
 </div>

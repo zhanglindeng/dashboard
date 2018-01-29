@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Log } from '../classes/log';
 import { environment } from '../../environments/environment';
 import { LogResponse } from '../classes/log-response';
+import { Helper } from '../classes/helper';
 
 @Component({
   selector: 'app-log',
@@ -60,6 +61,7 @@ export class LogComponent implements OnInit {
           this.count = logResponse.count;
           this.currentPage = logResponse.current_page;
           this.totalPage = logResponse.total_page;
+          Helper.mainScrollTop();
         } else {
           alert(logResponse.message);
         }
@@ -84,6 +86,7 @@ export class LogComponent implements OnInit {
           this.count = logResponse.count;
           this.currentPage = logResponse.current_page;
           this.totalPage = logResponse.total_page;
+          Helper.mainScrollTop();
         } else {
           alert(logResponse.message);
         }
