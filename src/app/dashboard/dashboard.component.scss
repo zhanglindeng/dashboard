@@ -1,6 +1,4 @@
-$nav1-width: 6rem;
-$nav2-width: 8rem;
-
+$nav-width: 10rem;
 $header-height: 3.5rem;
 
 .dashboard {
@@ -95,7 +93,7 @@ $header-height: 3.5rem;
       top: $header-height;
       right: 0;
       bottom: 0;
-      left: $nav1-width+$nav2-width;
+      left: $nav-width;
       padding: 1rem;
       overflow: scroll;
     }

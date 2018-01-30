@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
+import { Menu, MenusResponse, Submenu } from '../../classes/menu';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -8,29 +11,35 @@ import 'rxjs/add/operator/filter';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  nav1 = 'home';
+  menus: Menu[];
+  currentMenu: Menu;
+  currentSubmenu: Submenu;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
   }
 
   ngOnInit() {
-    // this.router.events
-    //   .filter(event => event instanceof NavigationEnd)
-    //   .subscribe(
-    //     data => {
-    //       console.log(data);
-    //     },
-    //     err => {
-    //       console.log(err);
-    //     }
-    //   );
+    this.http.get(`${environment.apiUrl}/menu`).subscribe(
+      (data: MenusResponse) => {
+        if (data.code === 0) {
+          this.menus = data.menus;
+          this.currentMenu = this.menus[0];
+        } else {
+          alert(data.message);
+        }
+      },
+      err => {
+        console.log(err);
+        alert(err.message || 'Unknown error');
+      }
+    );
   }
 
-  nav1Click(s: string) {
-    this.nav1 = s;
+  menuClick(m: Menu) {
+    this.currentMenu = m;
   }
 
-  nav1Mouseenter(s: string) {
-    this.nav1 = s;
+  menuMouseenter(m: Menu) {
+    this.currentMenu = m;
   }
 }

@@ -1,103 +1,13 @@
-<div class="nav1">
-  <div class="item" [ngClass]="{'active':nav1=='home'}" (click)="nav1Click('home')"
-       (mouseenter)="nav1Mouseenter('home')">
-    <i class="fa fa-home fa-fw"></i>
-    首页
-  </div>
-  <div class="item" [ngClass]="{'active':nav1=='user'}" (click)="nav1Click('user')"
-       (mouseenter)="nav1Mouseenter('user')">
-    <i class="fa fa-user fa-fw"></i>
-    用户
-  </div>
-  <div class="item" [ngClass]="{'active':nav1=='brand'}" (click)="nav1Click('brand')"
-       (mouseenter)="nav1Mouseenter('brand')">
-    <i class="fa fa-500px fa-fw"></i>
-    商家
-  </div>
-  <div class="item" [ngClass]="{'active':nav1=='asset'}" (click)="nav1Click('asset')"
-       (mouseenter)="nav1Mouseenter('asset')">
-    <i class="fa fa-server fa-fw"></i>
-    资源
-  </div>
-  <div class="item" [ngClass]="{'active':nav1=='file'}" (click)="nav1Click('file')"
-       (mouseenter)="nav1Mouseenter('file')">
-    <i class="fa fa-file fa-fw"></i>
-    文件
-  </div>
-  <div class="item" [ngClass]="{'active':nav1=='system'}" (click)="nav1Click('system')"
-       (mouseenter)="nav1Mouseenter('system')">
-    <i class="fa fa-cog fa-fw"></i>
-    系统
-  </div>
-</div>
-<div class="nav2">
-
-  <div class="home" *ngIf="nav1 == 'home'">
-    <div class="item">
-      <a routerLink="/home" routerLinkActive="active">概览</a>
+<div class="menu-nav">
+  <div class="item" *ngFor="let menu of menus">
+    <div class="top-menu" [ngClass]="{'active':currentMenu.name_en==menu.name_en}" (click)="menuClick(menu)">
+      <i class="fa {{ menu.icon }} fa-fw"></i>
+      {{ menu.name }}
     </div>
-  </div>
-
-  <div class="user" *ngIf="nav1 == 'user'">
-    <div class="item">
-      <a href="/users">注册列表</a>
-    </div>
-    <div class="item">
-      <a href="/users">等级设置</a>
-    </div>
-    <div class="item">
-      <a href="/users">管理员列表</a>
-    </div>
-  </div>
-
-  <div class="brand" *ngIf="nav1 == 'brand'">
-    <div class="item">
-      <a href="/brand">商家列表</a>
-    </div>
-    <div class="item">
-      <a href="/brand">入驻申请</a>
-    </div>
-    <div class="item">
-      <a href="/brand">认证申请</a>
-    </div>
-  </div>
-
-  <div class="asset" *ngIf="nav1 == 'asset'">
-    <div class="item">
-      <a href="/asset">城市列表</a>
-    </div>
-    <div class="item">
-      <a href="/asset">资源2</a>
-    </div>
-    <div class="item">
-      <a href="/asset">资源3</a>
-    </div>
-  </div>
-
-  <div class="file" *ngIf="nav1 == 'file'">
-    <div class="item">
-      <a href="/file">图片</a>
-    </div>
-    <div class="item">
-      <a href="/file">视频</a>
-    </div>
-    <div class="item">
-      <a href="/file">文档</a>
-    </div>
-  </div>
-
-  <div class="system" *ngIf="nav1 == 'system'">
-    <div class="item">
-      <a routerLink="/log" routerLinkActive="active">访问日志</a>
-    </div>
-    <div class="item">
-      <a routerLink="/menu" routerLinkActive="active">菜单</a>
-    </div>
-    <div class="item">
-      <a href="/system">统计信息</a>
-    </div>
-    <div class="item">
-      <a href="/system">版本信息</a>
+    <div class="submenus" [ngClass]="{'show-submenus':currentMenu.name_en==menu.name_en}"  >
+      <div class="submenu" *ngFor="let submenu of menu.submenus">
+        <a routerLink="{{ submenu.link }}" routerLinkActive="active">{{ submenu.name }}</a>
+      </div>
     </div>
   </div>
 </div>

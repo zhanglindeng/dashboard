@@ -1,64 +1,62 @@
-$nav1-width: 6rem;
-$nav2-width: 8rem;
-
+$nav-width: 10rem;
 $header-height: 3.5rem;
 
-.nav1 {
+.menu-nav {
   position: fixed;
   top: $header-height;
   left: 0;
-  width: $nav1-width;
+  width: $nav-width;
   bottom: 0;
   overflow: auto;
   background-color: #22252a;
   color: #ffffff;
 
   .item {
-    height: 3rem;
-    line-height: 3rem;
-    font-size: 1rem;
-    padding: 0 .5rem;
-    cursor: pointer;
-  }
+    width: 100%;
+    height: auto;
 
-  .item:hover {
-    background-color: #3f464d;
-    color: #ffffff;
-  }
+    .top-menu {
+      height: 3rem;
+      line-height: 3rem;
+      font-size: 1rem;
+      padding: 0 .5rem;
+      cursor: pointer;
+    }
 
-  .active {
-    background-color: #3f464d;
-    color: #ffffff;
-  }
-}
-
-.nav2 {
-  position: fixed;
-  top: $header-height;
-  left: $nav1-width;
-  width: $nav2-width;
-  bottom: 0;
-  overflow: auto;
-  background-color: #3f464d;
-
-  .item {
-    height: 3rem;
-    line-height: 3rem;
-
-    a {
+    .top-menu:hover {
+      background-color: #3f464d;
       color: #ffffff;
-      text-decoration: none;
-      //font-size: .85rem;
+    }
+
+
+    div.active {
+      background-color: #3f464d;
+      color: #ffffff;
+    }
+
+    .submenus {
+      display: none;
+      background-color: #2b3035;
+      .submenu {
+        a {
+          width: 100%;
+          color: #ffffff;
+          text-decoration: none;
+          display: block;
+          padding-left: 2rem;
+          padding-right: 1rem;
+          height: 3rem;
+          line-height: 3rem;
+          font-size: .85rem;
+        }
+        a.active, a:hover {
+          color: cornflowerblue;
+        }
+      }
+    }
+
+    .show-submenus {
       display: block;
-      padding-left: 1rem;
-    }
-
-    a:hover {
-      color: cornflowerblue;
-    }
-
-    a.active {
-      color: cornflowerblue;
     }
   }
 }
