@@ -1,14 +1,11 @@
 .menu {
 
-  .add_menu_view {
+  .add_menu_view,
+  .edit_menu_view,
+  .add_submenu_view,
+  .edit_submenu_view {
     position: fixed;
-    top: 10rem;
-    left: calc(calc(100vw - 30rem) / 2);
-    width: 40rem;
-  }
-
-  .add_submenu_view {
-    position: fixed;
+    z-index: 10;
     top: 10rem;
     left: calc(calc(100vw - 30rem) / 2);
     width: 40rem;

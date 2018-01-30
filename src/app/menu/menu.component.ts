@@ -20,6 +20,10 @@ export class MenuComponent implements OnInit {
   newMenu: Menu;
   newSubmenu: Submenu;
   currentAddMenu: Menu;
+  editingMenu: Menu;
+  edit_menu_view_show = false;
+  editingSubmenu: Submenu;
+  edit_submenu_view_show = false;
 
   constructor(private http: HttpClient) {
   }
@@ -234,10 +238,77 @@ export class MenuComponent implements OnInit {
   }
 
   edit(m: Menu) {
-    alert(`todo: edit ${m.name}`);
+    this.editingMenu = m;
+    this.edit_menu_view_show = true;
+  }
+
+  editNo() {
+    this.edit_menu_view_show = false;
+  }
+
+  editOk() {
+    this.requesting = true;
+    this.http.post(`${environment.apiUrl}/menu/update/${this.editingMenu.id}`, {
+      name: this.editingMenu.name,
+      name_en: this.editingMenu.name_en,
+      icon: this.editingMenu.icon,
+      sort: this.editingMenu.sort,
+      remark: this.editingMenu.remark,
+    }, {
+      headers: {'Authorization': sessionStorage.getItem('token')}
+    }).subscribe(
+      (data: MenuResponse) => {
+        this.requesting = false;
+        if (data.code === 0) {
+          this.edit_menu_view_show = false;
+          alert('编辑菜单成功');
+          location.reload();
+        } else {
+          alert(data.message);
+        }
+      },
+      err => {
+        this.requesting = false;
+        console.log(err);
+        alert(err.message || 'Unknown error');
+      }
+    );
   }
 
   editSubmenu(m: Menu, s: Submenu) {
-    alert(`todo: edit ${m.name} submenu ${s.name}`);
+    this.editingMenu = m;
+    this.editingSubmenu = s;
+    this.edit_submenu_view_show = true;
+  }
+
+  editSubmenuOk() {
+    this.requesting = true;
+    this.http.post(`${environment.apiUrl}/menu/update/${this.editingMenu.id}/submenu/${this.editingSubmenu.id}`, {
+      name: this.editingSubmenu.name,
+      link: this.editingSubmenu.link,
+      sort: this.editingSubmenu.sort,
+    }, {
+      headers: {'Authorization': sessionStorage.getItem('token')}
+    }).subscribe(
+      (data: MenuResponse) => {
+        this.requesting = false;
+        if (data.code === 0) {
+          this.edit_submenu_view_show = false;
+          alert('编辑子菜单成功');
+          location.reload();
+        } else {
+          alert(data.message);
+        }
+      },
+      err => {
+        this.requesting = false;
+        console.log(err);
+        alert(err.message || 'Unknown error');
+      }
+    );
+  }
+
+  editSubmenuNo() {
+    this.edit_submenu_view_show = false;
   }
 }

@@ -2,6 +2,7 @@
   <h3>Menus</h3>
   <hr>
   <button class="btn btn-primary" (click)="add()">添加</button>
+  <a href="http://fontawesome.io/icons/#" target="_blank" class="btn btn-light">icons</a>
   <hr>
   <div *ngFor="let menu of menus" class="menu-item">
     <div class="name clearfix">
@@ -118,6 +119,98 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="addSubmenuNo()">取消</button>
         <button type="button" class="btn btn-primary" (click)="addSubmenuOk()" [disabled]="requesting">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!--edit menu view-->
+  <div *ngIf="edit_menu_view_show" class="edit_menu_view">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">编辑菜单</h5>
+        <button type="button" class="close" (click)="editNo()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--edit_name-->
+        <div class="form-group row">
+          <label for="edit_name" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="edit_name" [(ngModel)]="editingMenu.name">
+          </div>
+        </div>
+        <!--edit_name_en-->
+        <div class="form-group row">
+          <label for="edit_name_en" class="col-sm-2 col-form-label">Name En</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="edit_name_en" [(ngModel)]="editingMenu.name_en">
+          </div>
+        </div>
+        <!--edit_icon-->
+        <div class="form-group row">
+          <label for="edit_icon" class="col-sm-2 col-form-label">Icon</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="edit_icon" [(ngModel)]="editingMenu.icon">
+          </div>
+        </div>
+        <!--edit_sort-->
+        <div class="form-group row">
+          <label for="edit_sort" class="col-sm-2 col-form-label">Sort</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="edit_sort" [(ngModel)]="editingMenu.sort">
+          </div>
+        </div>
+        <!--edit_remark-->
+        <div class="form-group row">
+          <label for="edit_remark" class="col-sm-2 col-form-label">Remark</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="edit_remark" [(ngModel)]="editingMenu.remark">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="editNo()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="editOk()" [disabled]="requesting">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!--edit submenu view-->
+  <div *ngIf="edit_submenu_view_show" class="edit_submenu_view">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">编辑"{{ editingMenu.name }}"的子菜单</h5>
+        <button type="button" class="close" (click)="editSubmenuNo()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--edit_submenu_name-->
+        <div class="form-group row">
+          <label for="edit_submenu_name" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="edit_submenu_name" [(ngModel)]="editingSubmenu.name">
+          </div>
+        </div>
+        <!--edit_submenu_link-->
+        <div class="form-group row">
+          <label for="edit_submenu_link" class="col-sm-2 col-form-label">Link</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="edit_submenu_link" [(ngModel)]="editingSubmenu.link">
+          </div>
+        </div>
+        <!--edit_submenu_sort-->
+        <div class="form-group row">
+          <label for="edit_submenu_sort" class="col-sm-2 col-form-label">Sort</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="edit_submenu_sort" [(ngModel)]="editingSubmenu.sort">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="editSubmenuNo()">取消</button>
+        <button type="button" class="btn btn-primary" (click)="editSubmenuOk()" [disabled]="requesting">确定</button>
       </div>
     </div>
   </div>
