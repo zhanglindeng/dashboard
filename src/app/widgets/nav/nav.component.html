@@ -1,12 +1,24 @@
 <div class="menu-nav">
   <div class="item" *ngFor="let menu of menus">
-    <div class="top-menu" [ngClass]="{'active':currentMenu.name_en==menu.name_en}" (click)="menuClick(menu)">
+    <div class="top-menu" [ngClass]="{'active':currentMenu.name_en==menu.name_en}" (click)="menuClick(menu)"
+         (mouseenter)="menuMouseenter(menu)">
       <i class="fa {{ menu.icon }} fa-fw"></i>
       {{ menu.name }}
     </div>
-    <div class="submenus" [ngClass]="{'show-submenus':currentMenu.name_en==menu.name_en}"  >
-      <div class="submenu" *ngFor="let submenu of menu.submenus">
-        <a routerLink="{{ submenu.link }}" routerLinkActive="active">{{ submenu.name }}</a>
+    <!--<div class="submenus" [ngClass]="{'show-submenus':currentMenu.name_en==menu.name_en}">-->
+    <!--<div class="submenu" *ngFor="let submenu of menu.submenus">-->
+    <!--<a routerLink="{{ submenu.link }}" routerLinkActive="active">{{ submenu.name }}</a>-->
+    <!--</div>-->
+    <!--</div>-->
+  </div>
+</div>
+<div class="submenu-nav">
+  <div *ngFor="let menu of menus">
+    <div *ngFor="let submenu of menu.submenus">
+      <div *ngIf="menu.name_en==currentMenu.name_en" class="submenu-items">
+        <div class="submenu-item">
+          <a routerLink="{{ submenu.link }}" routerLinkActive="active">{{ submenu.name }}</a>
+        </div>
       </div>
     </div>
   </div>

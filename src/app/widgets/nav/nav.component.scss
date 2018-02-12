@@ -1,5 +1,7 @@
-$nav-width: 10rem;
+$nav-width: 6rem;
 $header-height: 3.5rem;
+
+$submenu-nav-width: 8rem;
 
 .menu-nav {
   position: fixed;
@@ -24,13 +26,13 @@ $header-height: 3.5rem;
     }
 
     .top-menu:hover {
-      background-color: #3f464d;
+      background-color: #2b3035;
       color: #ffffff;
     }
 
 
     div.active {
-      background-color: #3f464d;
+      background-color: #2b3035;
       color: #ffffff;
     }
 
@@ -57,6 +59,33 @@ $header-height: 3.5rem;
 
     .show-submenus {
       display: block;
+    }
+  }
+}
+
+.submenu-nav {
+  position: fixed;
+  top: $header-height;
+  left: $nav-width;
+  bottom: 0;
+  overflow: auto;
+  background-color: #2b3035;
+  color: #ffffff;
+  width: $submenu-nav-width;
+
+  .submenu-item {
+    height: 3rem;
+    padding: 0 1rem;
+    line-height: 3rem;
+
+    a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: .85rem;
+    }
+
+    a.active, a:hover {
+      color: cornflowerblue;
     }
   }
 }
