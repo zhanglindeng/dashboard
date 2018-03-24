@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get(`${environment.apiUrl}/menu`).subscribe(
+    this.http.get(`${environment.apiUrl}/menu/active`).subscribe(
       (data: MenusResponse) => {
         if (data.code === 0) {
           this.menus = data.menus;
