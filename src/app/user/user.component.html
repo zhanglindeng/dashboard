@@ -1,0 +1,22 @@
+<div class="user-list">
+  <h3>用户列表</h3>
+  <hr>
+  <table class="table table-bordered table-hover">
+    <tr class="thead-light">
+      <th>ID</th>
+      <th>姓名</th>
+      <th>邮箱</th>
+      <th>创建时间</th>
+      <th>最后更新</th>
+      <th>操作</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.created_at }}</td>
+      <td>{{ user.updated_at }}</td>
+      <td><a class="btn btn-primary" href="#">详情</a></td>
+    </tr>
+  </table>
+</div>

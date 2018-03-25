@@ -16,6 +16,7 @@ const routes: Routes = [
       {path: 'home', loadChildren: './home/home.module#HomeModule'},
       {path: 'log', loadChildren: './log/log.module#LogModule'},
       {path: 'menu', loadChildren: './menu/menu.module#MenuModule'},
+      {path: 'user', loadChildren: './user/user.module#UserModule'},
     ]
   },
   {path: '**', component: NotFoundComponent}
